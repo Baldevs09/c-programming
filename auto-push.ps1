@@ -10,8 +10,8 @@
 # NOTE: replace this with the EXACT path to your "C programming" folder.
 # Run `Get-Location` from inside that folder (in PowerShell) to get the
 # correct value, then paste it here exactly.
-$RepoDir  = "E:\About me\c programing"  
-$Branch   = "main"
+$RepoDir  = "E:\About me\c programing"
+$Branch   = "master"
 $LogFile  = "$env:USERPROFILE\auto-push.log"
 # --------------------------------------------------
 
