@@ -1,16 +1,15 @@
 # auto-push.ps1
 #
 # Automatically commits and pushes a Git repository.
-# A commit is created every time the script runs,
-# even if there are no file changes.
+# Creates a commit every time the script runs:
+# - Normal commit when files changed
+# - Empty commit when there are no changes
 
 # ---- CONFIG ----
 $RepoDir  = "E:\About me\c programing"
 $Branch   = "master"
 $LogFile  = "$env:USERPROFILE\auto-push.log"
 # ----------------
-
-
 
 function Write-Log {
     param([string]$Message)
@@ -38,27 +37,17 @@ if ($LASTEXITCODE -ne 0) {
 # Stage all changes
 git add -A
 
-# Check whether there are actual changes
-git diff --cached --quiet
+# Get staged files
+$changedFiles = @(git diff --cached --name-only)
 
-if ($LASTEXITCODE -eq 0) {
-    # No changes - create an empty commit
-    $commitMsg = "auto: daily update $(Get-Date -Format 'yyyy-MM-dd HH:mm')"
+if ($changedFiles.Count -gt 0) {
 
-    git commit --allow-empty -m "$commitMsg" *>> $LogFile
+    # -------------------------
+    # CHANGES EXIST
+    # -------------------------
 
-    if ($LASTEXITCODE -eq 0) {
-        Write-Log "no file changes - empty commit created"
-    }
-    else {
-        Write-Log "ERROR: empty commit failed"
-        exit 1
-    }
-}
-else {
-    # Changes exist
-    $changedFiles = (git diff --cached --name-only) -join ", "
-    $commitMsg = "auto: update $(Get-Date -Format 'yyyy-MM-dd HH:mm') - $changedFiles"
+    $fileList = $changedFiles -join ", "
+    $commitMsg = "auto: update $(Get-Date -Format 'yyyy-MM-dd HH:mm') - $fileList"
 
     git commit -m "$commitMsg" *>> $LogFile
 
@@ -67,10 +56,31 @@ else {
         exit 1
     }
 
-    Write-Log "changes committed: $changedFiles"
+    Write-Log "changes committed: $fileList"
+
+}
+else {
+
+    # -------------------------
+    # NO CHANGES
+    # -------------------------
+
+    $commitMsg = "auto: daily update $(Get-Date -Format 'yyyy-MM-dd HH:mm')"
+
+    git commit --allow-empty -m "$commitMsg" *>> $LogFile
+
+    if ($LASTEXITCODE -ne 0) {
+        Write-Log "ERROR: empty commit failed"
+        exit 1
+    }
+
+    Write-Log "no file changes - empty commit created"
 }
 
-# Push to GitHub
+# -------------------------
+# PUSH TO GITHUB
+# -------------------------
+
 git push origin $Branch *>> $LogFile
 
 if ($LASTEXITCODE -eq 0) {
