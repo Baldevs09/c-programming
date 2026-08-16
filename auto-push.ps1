@@ -1,26 +1,23 @@
 # auto-push.ps1
 #
-# Watches a local git repo for changes and, if any are found,
-# stages, commits, and pushes them automatically.
-#
-# This runs ON YOUR WINDOWS MACHINE via Task Scheduler.
-# It only works while Windows is actually on/awake at the scheduled time.
+# Automatically commits and pushes a Git repository.
+# A commit is created every time the script runs,
+# even if there are no file changes.
 
-# ---- CONFIG: edit this to point at your repo ----
-# NOTE: replace this with the EXACT path to your "C programming" folder.
-# Run `Get-Location` from inside that folder (in PowerShell) to get the
-# correct value, then paste it here exactly.
+# ---- CONFIG ----
 $RepoDir  = "E:\About me\c programing"
 $Branch   = "master"
 $LogFile  = "$env:USERPROFILE\auto-push.log"
-# --------------------------------------------------
+# ----------------
 
 function Write-Log {
     param([string]$Message)
+
     $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
     Add-Content -Path $LogFile -Value "$timestamp - $Message"
 }
 
+# Check repository directory
 if (-not (Test-Path $RepoDir)) {
     Write-Log "ERROR: repo dir not found: $RepoDir"
     exit 1
@@ -28,32 +25,56 @@ if (-not (Test-Path $RepoDir)) {
 
 Set-Location $RepoDir
 
-# Confirm this is actually a git repo
+# Check if this is a Git repository
 git rev-parse --is-inside-work-tree *> $null
+
 if ($LASTEXITCODE -ne 0) {
     Write-Log "ERROR: $RepoDir is not a git repo"
     exit 1
 }
 
-# Stage everything: new, modified, deleted files
+# Stage all changes
 git add -A
 
-# Check if anything is actually staged
+# Check whether there are actual changes
 git diff --cached --quiet
+
 if ($LASTEXITCODE -eq 0) {
-    Write-Log "no changes, skipping"
-    exit 0
+    # No changes - create an empty commit
+    $commitMsg = "auto: daily update $(Get-Date -Format 'yyyy-MM-dd HH:mm')"
+
+    git commit --allow-empty -m "$commitMsg" *>> $LogFile
+
+    if ($LASTEXITCODE -eq 0) {
+        Write-Log "no file changes - empty commit created"
+    }
+    else {
+        Write-Log "ERROR: empty commit failed"
+        exit 1
+    }
+}
+else {
+    # Changes exist
+    $changedFiles = (git diff --cached --name-only) -join ", "
+    $commitMsg = "auto: update $(Get-Date -Format 'yyyy-MM-dd HH:mm') - $changedFiles"
+
+    git commit -m "$commitMsg" *>> $LogFile
+
+    if ($LASTEXITCODE -ne 0) {
+        Write-Log "ERROR: commit failed"
+        exit 1
+    }
+
+    Write-Log "changes committed: $changedFiles"
 }
 
-$changedFiles = (git diff --cached --name-only) -join ", "
-$commitMsg = "auto: update $(Get-Date -Format 'yyyy-MM-dd HH:mm') - $changedFiles"
-
-git commit -m "$commitMsg" *>> $LogFile
-
+# Push to GitHub
 git push origin $Branch *>> $LogFile
+
 if ($LASTEXITCODE -eq 0) {
-    Write-Log "pushed successfully: $changedFiles"
-} else {
+    Write-Log "pushed successfully"
+}
+else {
     Write-Log "ERROR: push failed"
     exit 1
 }
