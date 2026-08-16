@@ -66,7 +66,7 @@
 int main(){
 
 	int arr[]={45,65,85};
-//	if arr[i] % 2 even print the value otherwise dont print it
+//	if arr[i] % 2 even print the value otherwise dont print them please ..
 
 for(int i=0;i<sizeof(arr)/sizeof(arr[0]);i++){
 	printf("%d ",i);
