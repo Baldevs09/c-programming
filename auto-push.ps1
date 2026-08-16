@@ -10,6 +10,8 @@ $Branch   = "master"
 $LogFile  = "$env:USERPROFILE\auto-push.log"
 # ----------------
 
+
+
 function Write-Log {
     param([string]$Message)
 
