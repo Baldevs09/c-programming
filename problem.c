@@ -75,4 +75,4 @@ for(int i=0;i<sizeof(arr)/sizeof(arr[0]);i++){
 	return 0;
 }
 
-int a = 10;
+
