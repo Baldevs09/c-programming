@@ -62,17 +62,31 @@
 
 // 	return 0;
 // }
-#include <stdlib.h>
-int main(){
+// #include <stdlib.h>
+// int main(){
 
-	int arr[]={45,65,85};
-//	if arr[i] % 2 even print the value otherwise dont print them please ..
+// 	int arr[]={45,65,85};
+// //	if arr[i] % 2 even print the value otherwise dont print them please ..
 
-for(int i=0;i<sizeof(arr)/sizeof(arr[0]);i++){
-	printf("%d ",i);
+// for(int i=0;i<sizeof(arr)/sizeof(arr[0]);i++){
+// 	printf("%d ",i);
 
+// }
+// 	return 0;
+// }
+#include <stdio.h>
+
+int main() {
+    int age;
+
+    printf("Enter your age: ");
+    scanf("%d", &age);
+
+    if (age >= 18) {
+        printf("You are eligible to vote.\n");
+    } else {
+        printf("You are not eligible to vote.\n");
+    }
+
+    return 0;
 }
-	return 0;
-}
-
-
