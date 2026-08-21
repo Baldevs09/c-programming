@@ -74,19 +74,36 @@
 // }
 // 	return 0;
 // }
+// #include <stdio.h>
+
+// int main() {
+//     int age;
+
+//     printf("Enter your age: ");
+//     scanf("%d", &age);
+
+//     if (age >= 18) {
+//         printf("You are eligible to vote.\n");
+//     } else {
+//         printf("You are not eligible to vote.\n");
+//     }
+
+//     return 0;
+// }
 #include <stdio.h>
 
 int main() {
-    int age;
+    int arr[] = {25, 12, 89, 45, 67};
+    int size = sizeof(arr) / sizeof(arr[0]);
+    int largest = arr[0];
 
-    printf("Enter your age: ");
-    scanf("%d", &age);
-
-    if (age >= 18) {
-        printf("You are eligible to vote.\n");
-    } else {
-        printf("You are not eligible to vote.\n");
+    for (int i = 1; i < size; i++) {
+        if (arr[i] > largest) {
+            largest = arr[i];
+        }
     }
+
+    printf("Largest number = %d", largest);
 
     return 0;
 }
