@@ -1,109 +1,15 @@
-// #include<stdio.h>
-// int main(){
-// 	int a,b,sum;
-// 	printf("enter your number:");
-// 	scanf("%d",&a);
-// 	printf("enter your number:");
-// 	scanf("%d",&b);
-// 	sum=a+b;
-// 	printf("%d",sum);
-// 	return 0;
-
-// #include<stdio.h>
-// int main (){
-// 	int a,b;
-// 	printf("enter your number:");
-// 	scanf("%d",&a);
-// 	printf("enter your number");
-// 	scanf("%d",&b);
-// 	printf("sum of %d",a-b);
-
-// 	return 0;
-// }
-
-// #include <stdio.h>
-
-// int main() {
-//     int a, b, temp;
-
-//     printf("Enter first number: ");
-//     scanf("%d", &a);
-
-//     printf("Enter second number: ");
-//     scanf("%d", &b);
-
-//     printf("Before swapping: a = %d, b = %d\n", a, b);
-
-//     temp = a;
-//     a = b;
-//     b = temp;
-
-//     printf("After swapping: a = %d, b = %d\n", a, b);
-
-//     return 0;}
-// #include<stdio.h>
-// int main (){
-// 	int a,b;
-// 	printf("enter a number:");
-// 	scanf("%d",&a);
-// 	printf("enter a number:");
-// 	scanf("%d",&b);
-// 	if (a>b){
-// 		printf("a is largest%d",a);
-// 	}
-// 	else if  (b>a){
-// 		printf("b islargest %d",b);
-// 	}
-// 	else{
-// 		printf("both the numbers are eaual");
-// 	}
-
-
-
-// 	return 0;
-// }
-// #include <stdlib.h>
-// int main(){
-
-// 	int arr[]={45,65,85};
-// //	if arr[i] % 2 even print the value otherwise dont print them please ..
-
-// for(int i=0;i<sizeof(arr)/sizeof(arr[0]);i++){
-// 	printf("%d ",i);
-
-// }
-// 	return 0;
-// }
-// #include <stdio.h>
-
-// int main() {
-//     int age;
-
-//     printf("Enter your age: ");
-//     scanf("%d", &age);
-
-//     if (age >= 18) {
-//         printf("You are eligible to vote.\n");
-//     } else {
-//         printf("You are not eligible to vote.\n");
-//     }
-
-//     return 0;
-// }
-#include <stdio.h>
-
-int main() {
-    int arr[] = {25, 12, 89, 45, 67};
-    int size = sizeof(arr) / sizeof(arr[0]);
-    int largest = arr[0];
-
-    for (int i = 1; i < size; i++) {
-        if (arr[i] > largest) {
-            largest = arr[i];
-        }
-    }
-
-    printf("Largest number = %d", largest);
-
-    return 0;
+//----------------------------------------------------------ARRAY-----------------------------------------------------------------------
+#include<stdio.h>
+int main(){
+	float price[3];
+	printf("enter your item price:");
+	scanf("%f",&price[0]);
+	printf("enter your item price:");
+	scanf("%f",&price[1]);
+	printf("enter your item price:");
+	scanf("%f",&price[2]);
+	printf("total price:%f",price[0]+(0.18*price[0]));
+	printf("total price:%f",price[1]+(0.18*price[1]));
+	printf("total price:%f",price[2]+(0.18*price[2]));
+	return 0;
 }
