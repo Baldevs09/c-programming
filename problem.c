@@ -13,18 +13,38 @@
 // 	printf("total price:%f",price[2]+(0.18*price[2]));
 // 	return 0;
 // }
+// #include <stdio.h>
+
+// int main() {
+//     int num;
+
+//     printf("Enter a number: ");
+//     scanf("%d", &num);
+
+//     if (num % 2 == 0) {
+//         printf("%d is Even\n", num);
+//     } else {
+//         printf("%d is Odd\n", num);
+//     }
+
+//     return 0;
+// }
 #include <stdio.h>
 
 int main() {
-    int num;
+    int a, b, c;
 
-    printf("Enter a number: ");
-    scanf("%d", &num);
+    printf("Enter three numbers: ");
+    scanf("%d %d %d", &a, &b, &c);
 
-    if (num % 2 == 0) {
-        printf("%d is Even\n", num);
-    } else {
-        printf("%d is Odd\n", num);
+    if (a >= b && a >= c) {
+        printf("%d is the largest", a);
+    }
+    else if (b >= a && b >= c) {
+        printf("%d is the largest", b);
+    }
+    else {
+        printf("%d is the largest", c);
     }
 
     return 0;
