@@ -93,6 +93,30 @@
 
 //     return 0;
 // }
+// #include <stdio.h>
+
+// int main() {
+//     int n, original, reverse = 0, rem;
+
+//     printf("Enter a number: ");
+//     scanf("%d", &n);
+
+//     original = n;
+
+//     while (n != 0) {
+//         rem = n % 10;
+//         reverse = reverse * 10 + rem;
+//         n = n / 10;
+//     }
+
+//     if (original == reverse) {
+//         printf("%d is a palindrome", original);
+//     } else {
+//         printf("%d is not a palindrome", original);
+//     }
+
+//     return 0;
+// }
 #include <stdio.h>
 
 int main() {
