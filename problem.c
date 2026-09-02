@@ -141,23 +141,44 @@
 
 //     return 0;
 // }
+// #include <stdio.h>
+
+// int main() {
+//     int n, i;
+//     long long factorial = 1;
+
+//     printf("Enter a number: ");
+//     scanf("%d", &n);
+
+//     if (n < 0) {
+//         printf("Factorial is not defined for negative numbers.");
+//     } else {
+//         for (i = 1; i <= n; i++) {
+//             factorial = factorial * i;
+//         }
+
+//         printf("Factorial of %d = %lld", n, factorial);
+//     }
+
+//     return 0;
+// }
 #include <stdio.h>
 
 int main() {
     int n, i;
-    long long factorial = 1;
+    int a = 0, b = 1, next;
 
-    printf("Enter a number: ");
+    printf("Enter the number of terms: ");
     scanf("%d", &n);
 
-    if (n < 0) {
-        printf("Factorial is not defined for negative numbers.");
-    } else {
-        for (i = 1; i <= n; i++) {
-            factorial = factorial * i;
-        }
+    printf("Fibonacci series: ");
 
-        printf("Factorial of %d = %lld", n, factorial);
+    for (i = 1; i <= n; i++) {
+        printf("%d ", a);
+
+        next = a + b;
+        a = b;
+        b = next;
     }
 
     return 0;
