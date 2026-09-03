@@ -162,23 +162,43 @@
 
 //     return 0;
 // }
+// #include <stdio.h>
+
+// int main() {
+//     int n, i;
+//     int a = 0, b = 1, next;
+
+//     printf("Enter the number of terms: ");
+//     scanf("%d", &n);
+
+//     printf("Fibonacci series: ");
+
+//     for (i = 1; i <= n; i++) {
+//         printf("%d ", a);
+
+//         next = a + b;
+//         a = b;
+//         b = next;
+//     }
+
+//     return 0;
+// }
 #include <stdio.h>
 
 int main() {
-    int n, i;
-    int a = 0, b = 1, next;
+    int arr[5];
+    int i;
 
-    printf("Enter the number of terms: ");
-    scanf("%d", &n);
+    printf("Enter 5 numbers:\n");
 
-    printf("Fibonacci series: ");
+    for (i = 0; i < 5; i++) {
+        scanf("%d", &arr[i]);
+    }
 
-    for (i = 1; i <= n; i++) {
-        printf("%d ", a);
+    printf("Array elements are:\n");
 
-        next = a + b;
-        a = b;
-        b = next;
+    for (i = 0; i < 5; i++) {
+        printf("%d ", arr[i]);
     }
 
     return 0;
