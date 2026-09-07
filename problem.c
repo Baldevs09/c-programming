@@ -227,33 +227,58 @@
 
 //     return 0;
 // }
+// #include <stdio.h>
+
+// int main() {
+//     int arr[5];
+//     int i, largest, second;
+
+//     printf("Enter 5 numbers:\n");
+
+//     for (i = 0; i < 5; i++) {
+//         scanf("%d", &arr[i]);
+//     }
+
+//     largest = arr[0];
+//     second = arr[0];
+
+//     for (i = 1; i < 5; i++) {
+//         if (arr[i] > largest) {
+//             second = largest;
+//             largest = arr[i];
+//         }
+//         else if (arr[i] > second && arr[i] != largest) {
+//             second = arr[i];
+//         }
+//     }
+
+//     printf("Largest = %d\n", largest);
+//     printf("Second largest = %d\n", second);
+
+//     return 0;
+// }
 #include <stdio.h>
 
 int main() {
-    int arr[5];
-    int i, largest, second;
+    int arr[10];
+    int i, even = 0, odd = 0;
 
-    printf("Enter 5 numbers:\n");
+    printf("Enter 10 numbers:\n");
 
-    for (i = 0; i < 5; i++) {
+    for (i = 0; i < 10; i++) {
         scanf("%d", &arr[i]);
     }
 
-    largest = arr[0];
-    second = arr[0];
-
-    for (i = 1; i < 5; i++) {
-        if (arr[i] > largest) {
-            second = largest;
-            largest = arr[i];
-        }
-        else if (arr[i] > second && arr[i] != largest) {
-            second = arr[i];
+    for (i = 0; i < 10; i++) {
+        if (arr[i] % 2 == 0) {
+            even++;
+        } else {
+            odd++;
         }
     }
 
-    printf("Largest = %d\n", largest);
-    printf("Second largest = %d\n", second);
+    printf("Even numbers = %d\n", even);
+    printf("Odd numbers = %d\n", odd);
 
     return 0;
 }
