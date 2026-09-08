@@ -257,28 +257,48 @@
 
 //     return 0;
 // }
+// #include <stdio.h>
+
+// int main() {
+//     int arr[10];
+//     int i, even = 0, odd = 0;
+
+//     printf("Enter 10 numbers:\n");
+
+//     for (i = 0; i < 10; i++) {
+//         scanf("%d", &arr[i]);
+//     }
+
+//     for (i = 0; i < 10; i++) {
+//         if (arr[i] % 2 == 0) {
+//             even++;
+//         } else {
+//             odd++;
+//         }
+//     }
+
+//     printf("Even numbers = %d\n", even);
+//     printf("Odd numbers = %d\n", odd);
+
+//     return 0;
+// }
 #include <stdio.h>
 
 int main() {
-    int arr[10];
-    int i, even = 0, odd = 0;
+    int a, b, c;
 
-    printf("Enter 10 numbers:\n");
+    printf("Enter three numbers: ");
+    scanf("%d %d %d", &a, &b, &c);
 
-    for (i = 0; i < 10; i++) {
-        scanf("%d", &arr[i]);
+    if (a >= b && a >= c) {
+        printf("%d is the largest number.\n", a);
     }
-
-    for (i = 0; i < 10; i++) {
-        if (arr[i] % 2 == 0) {
-            even++;
-        } else {
-            odd++;
-        }
+    else if (b >= a && b >= c) {
+        printf("%d is the largest number.\n", b);
     }
-
-    printf("Even numbers = %d\n", even);
-    printf("Odd numbers = %d\n", odd);
+    else {
+        printf("%d is the largest number.\n", c);
+    }
 
     return 0;
 }
